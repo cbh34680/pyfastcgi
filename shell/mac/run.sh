@@ -14,6 +14,6 @@ vardir=../../var
 export PYTHONPATH="${srcdir}/lib"
 export PYTHONDONTWRITEBYTECODE=1
 
-python ${srcdir}/prefork.py --chdir=${srcdir} --app-path=simple.py --pid-path=../var/pyfastcgi.pid "$@"
+python ${srcdir}/prefork.py --chdir=${srcdir} --app-path=buffering1.py --pid-path=../var/pyfastcgi.pid "$@"
 
 exit 0
