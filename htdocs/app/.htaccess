@@ -1,0 +1,4 @@
+
+SetHandler "proxy:fcgi://127.0.0.1:9000/"
+
+#SetHandler "proxy:unix:/data/app/pyfastcgi/var/pyfastcgi.sock|fcgi://localhost"

@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/app/a.css">
+        <script type="text/javascript" src="/app/a.js"></script>
+    </head>
+    <body>
+        <a href="/php/post.php">php/post</a>
+        <hr />
+        [multipart]
+        <br />
+        <form method="POST" action="/app/data" enctype="multipart/form-data">
+            <input type="text" name="key1" value="value1" />
+            <br />
+            <input type="file" name="file1" />
+            <br />
+            <input type="submit" />
+        </form>
+        <hr />
+        [urlencode]
+        <br />
+        <form method="POST" action="/app/data">
+            <input type="text" name="key1" value="value1" />
+            <br />
+            <input type="submit" />
+        </form>
+        pyfastcgi docroot
+        <hr />
+        <img src="/app/a.jpg" width="256" height="128"  /> <!--
+        <img src="/app/a.serr" /><img src="/app/a.aerr" />   -->
+    </body>
+</html>

@@ -1,0 +1,12 @@
+/venv/
+/.venv/
+/x/
+/.env
+/var/
+/htlogs/
+__pycache__/
+*.pyc
+*.pid
+*.swp
+*.tmp
+# EOF

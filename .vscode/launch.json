@@ -1,0 +1,190 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+      },
+    },
+    {
+      "name": "echo-server",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}echo-server.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "${workspaceRoot}${pathSeparator}src${pathSeparator}lib",
+      },
+    },
+    {
+      "name": "echo-client",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}echo-client.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+      },
+    },
+    {
+      "name": "hash-server",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}hash-server.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "${workspaceRoot}${pathSeparator}src${pathSeparator}lib",
+      },
+    },
+    {
+      "name": "hash-client",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}hash-client.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+      },
+    },
+    {
+      "name": "streaming1",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}streaming1.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "${workspaceRoot}${pathSeparator}src${pathSeparator}lib",
+      },
+    },
+    {
+      "name": "streaming2",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}streaming2.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "${workspaceRoot}${pathSeparator}src${pathSeparator}lib",
+      },
+    },
+    {
+      "name": "buffering1",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}buffering1.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "${workspaceRoot}${pathSeparator}src${pathSeparator}lib",
+      },
+      "args": [
+        "--max-stdio-mem=131070",
+        "--temp-dir=..${pathSeparator}tmp",
+      ],
+    },
+    {
+      "name": "buffering2",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}buffering2.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "${workspaceRoot}${pathSeparator}src${pathSeparator}lib",
+      },
+      "args": [
+        "--max-stdio-mem=131070",
+        "--temp-dir=..${pathSeparator}tmp",
+      ],
+    },
+    {
+      "name": "buffering3",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}buffering3.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "${workspaceRoot}${pathSeparator}src${pathSeparator}lib",
+      },
+      "args": [
+        "--max-stdio-mem=131070",
+        "--temp-dir=..${pathSeparator}tmp",
+      ],
+    },
+    {
+      "name": "prefork(non-blocking)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}prefork.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "args": [
+        "--app-path=${workspaceRoot}${pathSeparator}src${pathSeparator}buffering1.py",
+        "--non-blocking=True",
+        "--threads=2",
+      ],
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "${workspaceRoot}${pathSeparator}src${pathSeparator}lib",
+      },
+    },
+    {
+      "name": "prefork(blocking)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}prefork.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "args": [
+        "--chdir=${workspaceRoot}${pathSeparator}src",
+        "--app=buffering1.py",
+        "--non-blocking=False",
+        "--procs=1",
+        "--threads=1",
+        "--max-stdio-mem=131070",
+        "--temp-dir=..${pathSeparator}tmp",
+      ],
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "${workspaceRoot}${pathSeparator}src${pathSeparator}lib",
+      },
+    },
+    {
+      "name": "test-client1",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}${pathSeparator}src${pathSeparator}test-client1.py",
+      "cwd": "${workspaceRoot}${pathSeparator}src",
+      "console": "integratedTerminal",
+      "args": [
+      ],
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+      },
+    },
+    {
+      "name": "php: Listen for XDebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9003,
+    },
+  ]
+}

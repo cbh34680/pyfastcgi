@@ -1,0 +1,10 @@
+/*.csv
+/*.bin
+/*.gfs
+/*.jpg
+/*.txt
+/*.dat
+/main0.py
+/test0.py
+/test-client*.py
+# EOF
