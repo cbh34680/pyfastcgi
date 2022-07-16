@@ -5,9 +5,9 @@ import pathlib
 import shutil
 import tempfile
 import pyfastcgi
+import pyfastcgi.protocol as protocol
 import pyfastcgi.responders.errors as errors
 import pyfastcgi.responders.streaming as streaming
-import pyfastcgi.protocol as protocol
 from contextlib import contextmanager
 
 
@@ -23,7 +23,7 @@ def _close_tempfile(tmpf):
 
 
 class BufferingResponder(streaming.StreamingResponder):
-    _stdin:bytearray = None
+    _stdin = None
     stdin_fixed_len = 0
     stdin_pos = 0
 
@@ -62,6 +62,10 @@ class BufferingResponder(streaming.StreamingResponder):
     def make_response(self):
         ...
 
+    '''
+    self._stdin に FCGI_STDIN から受信した内容を保存する。
+    この際、サイズにより一時ファイルに出力した tempfile を設定する。
+    '''
     def _need_stdin(self):
         if not self._stdin is None:
             # do once
@@ -125,6 +129,15 @@ class BufferingResponder(streaming.StreamingResponder):
             if pyfastcgi.stdio_type(self._stdin) == pyfastcgi.StdioType.TMPFILE:
                 self._stdin.close()
 
+    @property
+    def stdin(self):
+        self._need_stdin()
+        return self._stdin
+
+    '''
+    self.stdin を直接参照すると型を意識しなければならないので open_stdin() により
+    メモリアクセスできるようにする
+    '''
     @contextmanager
     def open_stdin(self):
         self._need_stdin()

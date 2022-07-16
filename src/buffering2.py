@@ -4,9 +4,9 @@ import pathlib
 import socket
 import collections
 import pyfastcgi
-import pyfastcgi.responders.buffering as buffering
-import pyfastcgi.responders
 import pyfastcgi.listener
+import pyfastcgi.responders
+import pyfastcgi.responders.buffering as buffering
 
 
 class JsResponder(buffering.BufferingResponder):
@@ -34,7 +34,7 @@ class PostResponder(buffering.BufferingResponder):
                 cobody = f'{len(mem)}'
 
             else:
-                cobody = self._stdin
+                cobody = self.stdin
 
         return pyfastcgi.Response({'Status': '200 OK', 'Content-Type': 'text/plain'}, cobody)
 

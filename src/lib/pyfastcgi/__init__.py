@@ -49,7 +49,7 @@ def stdio_type(strm) -> StdioType:
     if isinstance(strm, Response):
         return StdioType.RESPONSE
 
-    assert False
+    assert False, f'un-expected type: {tstrm=}'
 
 
 @dataclass(frozen=True)

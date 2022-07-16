@@ -5,10 +5,9 @@ import collections
 import html
 import pprint
 import pyfastcgi
-import pyfastcgi.protocol as protocol
-import pyfastcgi.responders.streaming as streaming
-import pyfastcgi.responders
 import pyfastcgi.listener
+import pyfastcgi.responders
+import pyfastcgi.responders.streaming as streaming
 
 
 class PostResponder(streaming.StreamingResponder):

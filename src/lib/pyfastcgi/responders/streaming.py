@@ -15,7 +15,7 @@ _CHUNK_END = b'0\r\n\r\n'
 
 
 class StreamingResponder(pyfastcgi._BaseResponder):
-    stdin_read = False
+    _stdin_read = False
     _stdout_sent = False
 
     @property
@@ -30,7 +30,7 @@ class StreamingResponder(pyfastcgi._BaseResponder):
             raise
 
         except Exception as e:
-            if self.stdout_sent:
+            if self._stdout_sent:
                 '''
                 既に open_stdout() が実行されていたらエラーのレスポンスは送信不要
                 --> UnnecessaryResponseError を派生した ResponsingError を送出する
@@ -42,14 +42,14 @@ class StreamingResponder(pyfastcgi._BaseResponder):
         ...
 
     def _each_stdin_record(self):
-        if self.stdin_read:
+        if self._stdin_read:
             cause = errors.NoMoreStreamDataError()
 
-            if self.stdout_sent:
+            if self._stdout_sent:
                 raise errors.HeaderAlreadySentError() from cause
             raise cause
 
-        self.stdin_read = True
+        self._stdin_read = True
 
         while True:
             record = protocol.read_record(self.conn)
@@ -71,7 +71,7 @@ class StreamingResponder(pyfastcgi._BaseResponder):
 
     @contextmanager
     def open_stdout(self, headers:collections.Mapping):
-        if self.stdout_sent:
+        if self._stdout_sent:
             raise errors.HeaderAlreadySentError()
 
         self._stdout_sent = True

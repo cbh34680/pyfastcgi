@@ -3,8 +3,8 @@ import sys
 import pathlib
 import tempfile
 import pyfastcgi
-import pyfastcgi.responders.buffering as buffering
 import pyfastcgi.listener
+import pyfastcgi.responders.buffering as buffering
 
 
 class Responder(buffering.BufferingResponder):
@@ -48,7 +48,7 @@ class Responder(buffering.BufferingResponder):
                 cobody = f'{len(mem)}'
 
             else:
-                cobody = self._stdin
+                cobody = self.stdin
 
         wpath = os.path.join(self.context.temp_dir, f'renamed-{os.getpid()}.tmp')
         self.write_stdin_to_file(wpath)

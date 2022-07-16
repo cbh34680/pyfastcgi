@@ -4,9 +4,9 @@ import pathlib
 import socket
 import collections
 import pyfastcgi
-import pyfastcgi.responders.buffering as buffering
-import pyfastcgi.responders
 import pyfastcgi.listener
+import pyfastcgi.responders
+import pyfastcgi.responders.buffering as buffering
 
 
 class JsResponder(buffering.BufferingResponder):

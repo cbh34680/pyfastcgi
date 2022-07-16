@@ -3,7 +3,6 @@ import pathlib
 import contextlib
 import io
 import http.client
-from dataclasses import dataclass
 
 '''
 C:\devwork\workspaces\pyfastcgi\root\src>certutil -hashfile ..\data\KEN_ALL-utf8.CSV MD5
@@ -24,7 +23,6 @@ b'1d5858fcd7203064c8e931ec6f01fcfe'
 '''
 
 def main(conn:http.client.HTTPConnection, rfile:io.BufferedReader):
-
     buff = bytearray(4096)
 
     conn.putrequest('POST', '/app/hash')
@@ -55,7 +53,6 @@ def main(conn:http.client.HTTPConnection, rfile:io.BufferedReader):
 
 if __name__ == '__main__':
     rpath = pathlib.Path(os.getcwd()) / '..' / 'data' / 'KEN_ALL-utf8.CSV'
-    wpath = pathlib.Path(os.getcwd()) / 'response.txt'
 
     with(
         contextlib.closing(http.client.HTTPConnection('127.0.0.1', 80, timeout=5)) as conn,

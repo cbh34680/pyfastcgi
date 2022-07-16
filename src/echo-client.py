@@ -34,17 +34,14 @@ class RegistData:
 
 
 def on_read(conn:socket.socket, selector:selectors.SelectSelector, session:SessionData):
-
     nrecv = conn.recv_into(session.recvbuf)
 
     if nrecv == 0:
         selector.unregister(conn)
-
         conn.shutdown(socket.SHUT_RDWR)
         conn.close()
 
         session.loop = False
-
         return
 
     session.sum_recv += nrecv
@@ -56,7 +53,6 @@ def on_read(conn:socket.socket, selector:selectors.SelectSelector, session:Sessi
 
 
 def on_write(conn:socket.socket, selector:selectors.SelectSelector, session:SessionData):
-
     if session.sendbuf_pos == 0:
         with memoryview(session.sendbuf) as sendbuf:
             '''
@@ -105,7 +101,6 @@ def on_write(conn:socket.socket, selector:selectors.SelectSelector, session:Sess
 
 
 def on_event(conn:socket.socket, selector:selectors.SelectSelector, session:SessionData, mask):
-
     if mask & selectors.EVENT_READ:
         on_read(conn, selector, session)
 
@@ -114,7 +109,6 @@ def on_event(conn:socket.socket, selector:selectors.SelectSelector, session:Sess
 
 
 def main(conn:socket.socket, selector:dict, rfile, wfile):
-
     headers = (
         'POST /app/post HTTP/1.1',
         'Host: localhost',

@@ -1,7 +1,6 @@
 import http.client
 import pyfastcgi
 import pyfastcgi.protocol as protocol
-from dataclasses import dataclass
 
 
 '''
