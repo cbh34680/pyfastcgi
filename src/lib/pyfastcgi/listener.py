@@ -81,7 +81,12 @@ def process_request(context:pyfastcgi.Context, conn:socket.socket, client:tuple)
 
                     with memoryview(record.contentData) as mem:
                         a = protocol.make_params(mem)
-                        params |= a
+
+                        # >=3.9
+                        #params |= a
+
+                        # <3.9
+                        params.update(a)
 
                 responder = None
                 if context.responder_factory:
