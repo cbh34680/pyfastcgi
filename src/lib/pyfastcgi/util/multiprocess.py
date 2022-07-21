@@ -89,29 +89,29 @@ def do_finalize(context:pyfastcgi.Context, childs:set):
 
     update_childs(childs, SLEEP_SEC)
 
-    if not context.nonblocking:
-
-        print('* send NULL to sub-processes', file=sys.stderr)
-
-        send_last_packet(context.bind_addr, len(childs))
-
-        print(f'wait {SLEEP_SEC} sec for terminate process...', file=sys.stderr)
-        time.sleep(SLEEP_SEC)
-        print(f'wake up', file=sys.stderr)
-
-        update_childs(childs, SLEEP_SEC)
-
     if childs:
-        print('* force kill sub-processes', file=sys.stderr)
+        if not context.nonblocking:
+            print('* send NULL to sub-processes', file=sys.stderr)
 
-        # second SIGKILL
-        send_signal(signal.SIGKILL, childs)
+            send_last_packet(context.bind_addr, len(childs))
 
-        print(f'wait {SLEEP_SEC} sec for receive signal...', file=sys.stderr)
-        time.sleep(SLEEP_SEC)
-        print(f'wake up', file=sys.stderr)
+            print(f'wait {SLEEP_SEC} sec for terminate process...', file=sys.stderr)
+            time.sleep(SLEEP_SEC)
+            print(f'wake up', file=sys.stderr)
 
-        update_childs(childs, SLEEP_SEC)
+            update_childs(childs, SLEEP_SEC)
+
+        if childs:
+            print('* force kill sub-processes', file=sys.stderr)
+
+            # second SIGKILL
+            send_signal(signal.SIGKILL, childs)
+
+            print(f'wait {SLEEP_SEC} sec for receive signal...', file=sys.stderr)
+            time.sleep(SLEEP_SEC)
+            print(f'wake up', file=sys.stderr)
+
+            update_childs(childs, SLEEP_SEC)
 
     else:
         print('* detect all sub-processes exited', file=sys.stderr)
